@@ -12,33 +12,25 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
+    private EditText edtNumero1;
+    private EditText edtNumero2;
+    private TextView tvResultado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final EditText edtNumero1 = (EditText) findViewById(R.id.edtNumero1);
-        final EditText edtNumero2 = (EditText) findViewById(R.id.edtNumero2);
-
-        final TextView tvResultado = (TextView) findViewById(R.id.tvResultado);
-
-        Button btnSomar = (Button) findViewById(R.id.btnSomar);
-
-        btnSomar.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                int nr1 = Integer.parseInt(edtNumero1.getText().toString());
-                int nr2 = Integer.parseInt(edtNumero2.getText().toString());
-
-                Integer soma = (nr1 + nr2);
-                tvResultado.setText(soma.toString());
-
-            }
-
-        });
-
+        edtNumero1 = (EditText) findViewById(R.id.edtNumero1);
+        edtNumero2 = (EditText) findViewById(R.id.edtNumero2);
+        tvResultado = (TextView) findViewById(R.id.tvResultado);
     }
 
+    public void somar(View v) {
+        int nr1 = Integer.parseInt(edtNumero1.getText().toString());
+        int nr2 = Integer.parseInt(edtNumero2.getText().toString());
+
+        Integer soma = (nr1 + nr2);
+        tvResultado.setText(soma.toString());
+    }
 }
