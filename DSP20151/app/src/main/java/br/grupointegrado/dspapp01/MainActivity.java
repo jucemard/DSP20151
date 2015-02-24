@@ -31,6 +31,6 @@ public class MainActivity extends Activity {
         int nr2 = Integer.parseInt(edtNumero2.getText().toString());
 
         Integer soma = (nr1 + nr2);
-        tvResultado.setText(soma.toString());
+        //tvResultado.setText(soma.toString());
     }
 }
