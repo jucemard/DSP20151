@@ -30,18 +30,15 @@ public class MainActivity extends Activity {
         edtNumero2  = (EditText) findViewById(R.id.edtNumero2);
         edtNumero2.setInputType(InputType.TYPE_NULL);
 
-
         tvResultado = (TextView) findViewById(R.id.tvResultado);
     }
 
     public TextView getTextViewNumero () {
-
         try {
             return (TextView) this.getCurrentFocus();
         } catch (Exception e) {
             return null; //corrigir
         }
-
     }
 
     public void clickBtn7 (View v) {
@@ -52,18 +49,38 @@ public class MainActivity extends Activity {
         getTextViewNumero().setText(getTextViewNumero().getText().toString() + "8");
     }
 
-    public void clickBtnMais (View v) {
+    public double getValor (EditText tv) {
+        try {
+            return Double.parseDouble(tv.getText().toString());
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Entada inválida.", Toast.LENGTH_LONG).show();
 
-        Integer nr1 = Integer.parseInt(edtNumero1.getText().toString());
-        Integer nr2 = Integer.parseInt(edtNumero2.getText().toString());
-
-        Integer soma = nr1 + nr2;
-        Toast.makeText(this, "Resultado: " + soma.toString(), Toast.LENGTH_LONG).show();
-
-
-        tvResultado.setText(soma.toString());
+            return 0;
+        }
     }
 
+    public void clickBtnMenos (View v) {
+        this.mostraResultado(getValor(edtNumero1) - getValor(edtNumero2));
+    }
 
+    public void clickBtnMais (View v) {
+        double nr1 = getValor(edtNumero1);
+        double nr2 = getValor(edtNumero2);
+
+        double soma = (nr1 + nr2);
+
+        this.mostraResultado(soma);
+    }
+
+    public void mostraResultado (Double resultado) {
+        Toast.makeText(this, "Resultado: " + resultado.toString(), Toast.LENGTH_LONG).show();
+        tvResultado.setText("Resultado: " + resultado.toString());
+
+    }
+
+    public void clickBtnClear (View v) {
+        edtNumero1.setText("");
+        edtNumero2.setText("");
+    }
 
 }
