@@ -1,6 +1,6 @@
 package br.grupointegrado.calculadoradobruno;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
     private EditText edtNumero1;
     private EditText edtNumero2;
@@ -83,4 +83,28 @@ public class MainActivity extends Activity {
         edtNumero2.setText("");
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.action_settings:
+
+                Intent i = new Intent(this.getBaseContext(), CreditosActivity.class);
+                i.putExtra("resultado", tvResultado.getText().toString());
+
+                startActivity(i);
+
+            break;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
