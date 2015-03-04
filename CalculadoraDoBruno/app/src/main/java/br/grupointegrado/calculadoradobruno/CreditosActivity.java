@@ -21,5 +21,6 @@ public class CreditosActivity extends ActionBarActivity {
         String resultado = i.getExtras().getString("resultado");
 
         tvResultadoNovaActivity.setText(resultado);
-    }ß
+    }
+
 }

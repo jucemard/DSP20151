@@ -3,7 +3,7 @@
 
     <string name="app_name">CalculadoraDoBruno</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Opções</string>
+    <string name="opcoes">Opções</string>
     <string name="title_activity_creditos">CreditosActivity</string>
 
 </resources>
