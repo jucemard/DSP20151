@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="br.grupointegrado.twitterproject.CadContatoActivity">
+
+    <item
+        android:id="@+id/btnSalvar"
+        android:title="@string/btnSalvar"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/btnListar"
+        android:title="@string/btnListar"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+</menu>

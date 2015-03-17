@@ -3,7 +3,15 @@
 
     <string name="app_name">TwitterProject</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="cadContas">Cadastro de Contas</string>
     <string name="title_activity_rogerio_ceni">RogerioCeniActivity</string>
+    <string name="title_activity_cad_contato">CadContatoActivity</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="lbNome">Nome</string>
+    <string name="lbConta">Conta</string>
+
+    <string name="btnSalvar">Salvar</string>
+    <string name="btnListar">Listar</string>
 
 </resources>

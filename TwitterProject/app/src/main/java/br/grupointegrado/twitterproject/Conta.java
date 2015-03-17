@@ -5,12 +5,12 @@ import java.io.Serializable;
 /**
  * Created by bhpachulski on 3/10/2015.
  */
-public class Profile implements Serializable {
+public class Conta implements Serializable {
 
     private String conta;
     private String nome;
 
-    public Profile (String conta, String nome) {
+    public Conta(String conta, String nome) {
         this.conta = conta;
         this.nome = nome;
     }

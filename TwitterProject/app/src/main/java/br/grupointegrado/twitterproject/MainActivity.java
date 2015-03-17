@@ -3,7 +3,6 @@ package br.grupointegrado.twitterproject;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,11 +24,11 @@ public class MainActivity extends ActionBarActivity {
 
         final ListView lvContas = (ListView) findViewById(R.id.lvContas);
 
-        final List<Profile> profiles = new ArrayList<Profile>();
-        profiles.add(new Profile("bhpachulski", "Bruno Henrique Pachulski"));
-        profiles.add(new Profile("teste", "Teste"));
+        final List<Conta> contas = new ArrayList<Conta>();
+        contas.add(new Conta("bhpachulski", "Bruno Henrique Pachulski"));
+        contas.add(new Conta("teste", "Teste"));
 
-        ArrayAdapter<Profile> aaContas = new ArrayAdapter<>(this, R.layout.minha_querida_linha, profiles);
+        ArrayAdapter<Conta> aaContas = new ArrayAdapter<>(this, R.layout.minha_querida_linha, contas);
 
         lvContas.setAdapter(aaContas);
         lvContas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -38,10 +37,10 @@ public class MainActivity extends ActionBarActivity {
                 TextView tv = (TextView) view;
 
                 Intent i = new Intent(view.getContext(), RogerioCeniActivity.class);
-                Profile profileSelecionado = profiles.get(position);
+                Conta contaSelecionado = contas.get(position);
 
                 i.putExtra("tipo", "click");
-                i.putExtra("usuario", profileSelecionado);
+                i.putExtra("usuario", contaSelecionado);
 
                 startActivity(i);
             }
@@ -52,7 +51,7 @@ public class MainActivity extends ActionBarActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(view.getContext(), RogerioCeniActivity.class);
                 i.putExtra("tipo", "longClick");
-                i.putExtra("usuario", profiles.get(position));
+                i.putExtra("usuario", contas.get(position));
 
                 startActivity(i);
                 return false;
@@ -69,6 +68,14 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.btnCadContas:
+                startActivity(new Intent(this, CadContatoActivity.class));
+            break;
+
+        }
 
         return super.onOptionsItemSelected(item);
     }
