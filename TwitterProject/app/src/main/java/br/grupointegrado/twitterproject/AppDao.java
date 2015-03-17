@@ -19,13 +19,14 @@ public class AppDao extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String SQL_CREATE_CONTA = "CREATE  TABLE Conta ( " +
-                                    "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-                                    "NOME VARCHAR(50) NOT NULL, " +
-                                    "CONTA VARCHAR(20) NOT NULL " +
-                                   ");";
+        StringBuilder SQL_CREATE_CONTA = new StringBuilder();
+        SQL_CREATE_CONTA.append("CREATE  TABLE Conta ( ");
+        SQL_CREATE_CONTA.append("id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ");
+        SQL_CREATE_CONTA.append("NOME VARCHAR(50) NOT NULL, ");
+        SQL_CREATE_CONTA.append("CONTA VARCHAR(20) NOT NULL );");
 
-        getWritableDatabase().execSQL(SQL_CREATE_CONTA);
+        //Executa o SQL
+        getWritableDatabase().execSQL(SQL_CREATE_CONTA.toString());
     }
 
     @Override
