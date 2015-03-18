@@ -37,7 +37,8 @@ public class CadContatoActivity extends ActionBarActivity {
 
         switch (item.getItemId()) {
             case R.id.btnSalvar:
-                getConta();
+                AppDao appDao = new AppDao(this);
+                appDao.saveConta(getConta());
             break;
 
             case R.id.btnListar:

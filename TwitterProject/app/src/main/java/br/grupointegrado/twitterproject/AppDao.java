@@ -1,8 +1,14 @@
 package br.grupointegrado.twitterproject;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by bhpachulski on 3/16/2015.
@@ -11,26 +17,43 @@ public class AppDao extends SQLiteOpenHelper {
 
     private static final String BD_NAME = "TwitterProjectBD";
     private static final int BD_VERSION = 1;
+    private Resources res;
 
     public AppDao(Context context) {
         super(context, AppDao.BD_NAME, null, AppDao.BD_VERSION);
+        res = context.getResources();
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
-        StringBuilder SQL_CREATE_CONTA = new StringBuilder();
-        SQL_CREATE_CONTA.append("CREATE  TABLE Conta ( ");
-        SQL_CREATE_CONTA.append("id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ");
-        SQL_CREATE_CONTA.append("NOME VARCHAR(50) NOT NULL, ");
-        SQL_CREATE_CONTA.append("CONTA VARCHAR(20) NOT NULL );");
-
         //Executa o SQL
-        getWritableDatabase().execSQL(SQL_CREATE_CONTA.toString());
+        db.execSQL(res.getString(R.string.SQL_CREATE_CONTATO));
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
 
+    public void saveConta (Conta c) {
+        ContentValues cv = new ContentValues();
+        cv.put("NOME", c.getNome());
+        cv.put("CONTA", c.getConta());
+
+        getWritableDatabase().insert("Conta", null, cv);
     }
+
+    public List<Conta> listConta () {
+        Cursor c = getReadableDatabase().query("Conta", new String[]{"id", "NOME", "CONTA"},
+                null, null, null, null, null);
+
+        List<Conta> contas = new ArrayList<>();
+
+        while (c.moveToNext()) {
+            contas.add(new Conta(c.getString(1), c.getString(2)));
+        }
+
+        c.close();
+
+        return contas;
+    }
+
 }

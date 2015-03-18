@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="SQL_CREATE_CONTATO">
+        CREATE TABLE Conta (
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        NOME VARCHAR(50) NOT NULL,
+        CONTA VARCHAR(20) NOT NULL);
+    </string>
+
+</resources>

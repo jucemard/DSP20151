@@ -1,6 +1,7 @@
 package br.grupointegrado.twitterproject;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteException;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +24,12 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TextView tvEmpty = (TextView) findViewById(R.id.tvEmpty);
         final ListView lvContas = (ListView) findViewById(R.id.lvContas);
+        lvContas.setEmptyView(tvEmpty);
 
-        final List<Conta> contas = new ArrayList<Conta>();
-        contas.add(new Conta("bhpachulski", "Bruno Henrique Pachulski"));
-        contas.add(new Conta("teste", "Teste"));
+        AppDao appDao = new AppDao(this);
+        final List<Conta> contas = appDao.listConta();
 
         ArrayAdapter<Conta> aaContas = new ArrayAdapter<>(this, R.layout.minha_querida_linha, contas);
 
