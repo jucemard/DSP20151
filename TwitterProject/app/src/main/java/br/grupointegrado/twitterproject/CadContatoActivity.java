@@ -1,5 +1,6 @@
 package br.grupointegrado.twitterproject;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -42,7 +43,7 @@ public class CadContatoActivity extends ActionBarActivity {
             break;
 
             case R.id.btnListar:
-
+                startActivity(new Intent(this, MainActivity.class));
             break;
         }
 

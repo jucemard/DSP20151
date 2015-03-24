@@ -48,12 +48,24 @@ public class AppDao extends SQLiteOpenHelper {
         List<Conta> contas = new ArrayList<>();
 
         while (c.moveToNext()) {
-            contas.add(new Conta(c.getString(1), c.getString(2)));
+            contas.add(new Conta(c.getInt(0), c.getString(1), c.getString(2)));
         }
 
         c.close();
 
         return contas;
+    }
+
+    public void deleteConta (Conta c) {
+        getWritableDatabase().delete("Conta", "id = ?", new String[]{c.getId().toString()});
+    }
+
+    public void updateConta (Conta c) {
+        ContentValues cv = new ContentValues();
+        cv.put("NOME", c.getNome());
+        cv.put("CONTA", c.getConta());
+
+        getWritableDatabase().update("Conta", cv, "id = ?", new String[]{c.getId().toString()});
     }
 
 }

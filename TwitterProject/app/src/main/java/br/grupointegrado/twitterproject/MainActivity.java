@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,35 +20,31 @@ import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
 
+    private TextView tvEmpty;
+    private ListView lvContas;
+    private AppDao appDao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView tvEmpty = (TextView) findViewById(R.id.tvEmpty);
-        final ListView lvContas = (ListView) findViewById(R.id.lvContas);
+        tvEmpty = (TextView) findViewById(R.id.tvEmpty);
+        lvContas = (ListView) findViewById(R.id.lvContas);
         lvContas.setEmptyView(tvEmpty);
 
-        AppDao appDao = new AppDao(this);
+        appDao = new AppDao(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         final List<Conta> contas = appDao.listConta();
 
         ArrayAdapter<Conta> aaContas = new ArrayAdapter<>(this, R.layout.minha_querida_linha, contas);
 
         lvContas.setAdapter(aaContas);
-        lvContas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView tv = (TextView) view;
-
-                Intent i = new Intent(view.getContext(), RogerioCeniActivity.class);
-                Conta contaSelecionado = contas.get(position);
-
-                i.putExtra("tipo", "click");
-                i.putExtra("usuario", contaSelecionado);
-
-                startActivity(i);
-            }
-        });
 
         lvContas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -82,4 +79,6 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

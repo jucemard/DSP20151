@@ -7,10 +7,17 @@ import java.io.Serializable;
  */
 public class Conta implements Serializable {
 
+    private Integer id;
     private String conta;
     private String nome;
 
     public Conta(String conta, String nome) {
+        this.conta = conta;
+        this.nome = nome;
+    }
+
+    public Conta(int id, String conta, String nome) {
+        this.id = id;
         this.conta = conta;
         this.nome = nome;
     }
@@ -30,6 +37,10 @@ public class Conta implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public Integer getId() { return id; }
+
+    public void setId(int id) { this.id = id;}
 
     @Override
     public String toString() {
