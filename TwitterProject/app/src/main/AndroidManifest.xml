@@ -21,7 +21,7 @@
             android:label="@string/title_activity_rogerio_ceni" >
         </activity>
         <activity
-            android:name=".CadContatoActivity"
+            android:name=".CadContaActivity"
             android:label="@string/title_activity_cad_contato" >
         </activity>
     </application>

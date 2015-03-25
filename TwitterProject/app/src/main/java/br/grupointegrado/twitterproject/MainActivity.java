@@ -1,10 +1,9 @@
 package br.grupointegrado.twitterproject;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteException;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,9 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,6 +20,7 @@ public class MainActivity extends ActionBarActivity {
     private TextView tvEmpty;
     private ListView lvContas;
     private AppDao appDao;
+    private List<Conta> contas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,24 +38,48 @@ public class MainActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
-        final List<Conta> contas = appDao.listConta();
+        contas = appDao.listConta();
 
-        ArrayAdapter<Conta> aaContas = new ArrayAdapter<>(this, R.layout.minha_querida_linha, contas);
+        ArrayAdapter<Conta> aaContas = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, contas);
 
         lvContas.setAdapter(aaContas);
 
-        lvContas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        lvContas.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(view.getContext(), RogerioCeniActivity.class);
-                i.putExtra("tipo", "longClick");
-                i.putExtra("usuario", contas.get(position));
+            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+                getMenuInflater().inflate(R.menu.menu_alt_conta, menu);
+                menu.setHeaderTitle("Alterar Contato");
 
-                startActivity(i);
-                return false;
+                //Mostrar ICON
+                //menu.setHeaderIcon()
             }
         });
 
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        AdapterView.AdapterContextMenuInfo pListMenu = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        Conta c = contas.get(pListMenu.position);
+
+        switch (item.getItemId()) {
+
+            case R.id.btnAlterar:
+                Intent i = new Intent(this, CadContaActivity.class);
+                i.putExtra("contaAlt", c);
+
+                startActivity(i);
+            break;
+
+            case R.id.btnDeletar:
+                appDao.deleteConta(c);
+                onResume();
+            break;
+
+        }
+
+        return super.onContextItemSelected(item);
     }
 
     @Override
@@ -72,7 +94,7 @@ public class MainActivity extends ActionBarActivity {
         switch (item.getItemId()) {
 
             case R.id.btnCadContas:
-                startActivity(new Intent(this, CadContatoActivity.class));
+                startActivity(new Intent(this, CadContaActivity.class));
             break;
 
         }

@@ -13,5 +13,7 @@
 
     <string name="btnSalvar">Salvar</string>
     <string name="btnListar">Listar</string>
+    <string name="btnAlterar">Alterar</string>
+    <string name="btnDeletar">Deletar</string>
 
 </resources>

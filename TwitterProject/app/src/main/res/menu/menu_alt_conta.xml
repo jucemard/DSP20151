@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/btnAlterar"
+        android:title="@string/btnAlterar"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/btnDeletar"
+        android:title="@string/btnDeletar"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+</menu>
