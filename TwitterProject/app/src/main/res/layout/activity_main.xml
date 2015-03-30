@@ -7,6 +7,11 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spnContas" />
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +24,5 @@
         android:text="Lista sem nada mano !"
         android:id="@+id/tvEmpty"
         android:textAlignment="center" />
-
-
 
 </LinearLayout>

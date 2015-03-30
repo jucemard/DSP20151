@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class MainActivity extends ActionBarActivity {
 
     private TextView tvEmpty;
     private ListView lvContas;
+    private Spinner spnContas;
     private AppDao appDao;
     private List<Conta> contas;
 
@@ -31,6 +33,9 @@ public class MainActivity extends ActionBarActivity {
         lvContas = (ListView) findViewById(R.id.lvContas);
         lvContas.setEmptyView(tvEmpty);
 
+        spnContas = (Spinner) findViewById(R.id.spnContas);
+        spnContas.setEmptyView(tvEmpty);
+
         appDao = new AppDao(this);
     }
 
@@ -42,7 +47,8 @@ public class MainActivity extends ActionBarActivity {
 
         ArrayAdapter<Conta> aaContas = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, contas);
 
-        lvContas.setAdapter(aaContas);
+        spnContas.setAdapter(aaContas);
+        lvContas.setAdapter (aaContas);
 
         lvContas.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
             @Override
