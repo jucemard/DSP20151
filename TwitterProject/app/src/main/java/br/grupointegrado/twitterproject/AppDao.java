@@ -48,7 +48,7 @@ public class AppDao extends SQLiteOpenHelper {
         List<Conta> contas = new ArrayList<>();
 
         while (c.moveToNext()) {
-            contas.add(new Conta(c.getInt(0), c.getString(2), c.getString(1)));
+            contas.add(new Conta(c.getInt(c.getColumnIndex("id")), c.getString(c.getColumnIndex("NOME")), c.getString(2)));
         }
 
         c.close();

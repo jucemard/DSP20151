@@ -16,7 +16,7 @@ public class Conta implements Serializable {
         this.nome = nome;
     }
 
-    public Conta(int id, String conta, String nome) {
+    public Conta(int id, String nome, String conta) {
         this.id = id;
         this.conta = conta;
         this.nome = nome;

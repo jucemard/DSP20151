@@ -75,9 +75,15 @@ public class CadContaActivity extends ActionBarActivity {
             case R.id.btnListar:
                 startActivity(new Intent(this, MainActivity.class));
             break;
-
         }
 
+        clearValues ();
         return super.onOptionsItemSelected(item);
+    }
+
+    public void clearValues () {
+        contaAlt = null;
+        edtNome.setText("");
+        edtConta.setText("");
     }
 }
