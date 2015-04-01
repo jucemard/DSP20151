@@ -17,6 +17,8 @@ public class AppDao extends SQLiteOpenHelper {
 
     private static final String BD_NAME = "TwitterProjectBD";
     private static final int BD_VERSION = 1;
+    private static final String[] TB_COLUMNS = new String[]{"id", "NOME", "CONTA"};
+    private static final String TB_NAME = "Conta";
     private Resources res;
 
     public AppDao(Context context) {
@@ -38,11 +40,11 @@ public class AppDao extends SQLiteOpenHelper {
         cv.put("NOME", c.getNome());
         cv.put("CONTA", c.getConta());
 
-        getWritableDatabase().insert("Conta", null, cv);
+        getWritableDatabase().insert(TB_NAME, null, cv);
     }
 
     public List<Conta> listConta () {
-        Cursor c = getReadableDatabase().query("Conta", new String[]{"id", "NOME", "CONTA"},
+        Cursor c = getReadableDatabase().query(TB_NAME, TB_COLUMNS,
                 null, null, null, null, null);
 
         List<Conta> contas = new ArrayList<>();
@@ -57,8 +59,8 @@ public class AppDao extends SQLiteOpenHelper {
     }
 
     public boolean verificaUsuario (String user, String pass) {
-        Cursor query = getReadableDatabase().rawQuery("SELECT * FROM USUARIO WHERE USER = ? AND PASS = ?",
-                new String[]{user, pass});
+        Cursor query = getReadableDatabase().rawQuery("SELECT * FROM ? WHERE USER = ? AND PASS = ?",
+                new String[]{TB_NAME, user, pass});
 
         if (query.getCount() == 1)
             return true;
@@ -68,7 +70,7 @@ public class AppDao extends SQLiteOpenHelper {
     }
 
     public void deleteConta (Conta c) {
-        getWritableDatabase().delete("Conta", "id = ?", new String[]{c.getId().toString()});
+        getWritableDatabase().delete(TB_NAME, "id = ?", new String[]{c.getId().toString()});
     }
 
     public void updateConta (Conta c) {
@@ -76,7 +78,7 @@ public class AppDao extends SQLiteOpenHelper {
         cv.put("NOME", c.getNome());
         cv.put("CONTA", c.getConta());
 
-        getWritableDatabase().update("Conta", cv, "id = ?", new String[]{c.getId().toString()});
+        getWritableDatabase().update(TB_NAME, cv, "id = ?", new String[]{c.getId().toString()});
     }
 
 }
