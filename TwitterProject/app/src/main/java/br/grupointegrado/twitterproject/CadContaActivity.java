@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class CadContaActivity extends ActionBarActivity {
 
-    private AppDao appDao;
+    private ContaDao contaDao;
     private EditText edtNome;
     private EditText edtConta;
     private Conta contaAlt;
@@ -21,7 +21,7 @@ public class CadContaActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cad_contato);
 
-        appDao = new AppDao(this);
+        contaDao = new ContaDao(this);
 
         edtNome = (EditText) findViewById(R.id.edtNome);
         edtConta = (EditText) findViewById(R.id.edtConta);
@@ -66,9 +66,9 @@ public class CadContaActivity extends ActionBarActivity {
             case R.id.btnSalvar:
 
                 if (contaAlt == null)
-                    appDao.saveConta(getConta());
+                    contaDao.save(getConta());
                 else
-                    appDao.updateConta(getConta(contaAlt));
+                    contaDao.update(getConta(contaAlt));
 
             break;
 

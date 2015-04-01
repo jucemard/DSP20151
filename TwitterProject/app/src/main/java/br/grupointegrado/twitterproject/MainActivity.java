@@ -22,7 +22,7 @@ public class MainActivity extends ActionBarActivity {
     private TextView tvEmpty;
     private ListView lvContas;
     private Spinner spnContas;
-    private AppDao appDao;
+    private ContaDao contaDao;
     private List<Conta> contas;
 
     @Override
@@ -37,15 +37,15 @@ public class MainActivity extends ActionBarActivity {
         spnContas = (Spinner) findViewById(R.id.spnContas);
         spnContas.setEmptyView(tvEmpty);
 
-        appDao = new AppDao(this);
-        Log.e("MSG", appDao.listConta().toString());
+        contaDao = new ContaDao(this);
+        Log.e("MSG", contaDao.list().toString());
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        contas = appDao.listConta();
+        contas = contaDao.list();
 
         ArrayAdapter<Conta> aaContas = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, contas);
 
@@ -81,7 +81,7 @@ public class MainActivity extends ActionBarActivity {
             break;
 
             case R.id.btnDeletar:
-                appDao.deleteConta(c);
+                contaDao.delete(c);
                 onResume();
             break;
 
