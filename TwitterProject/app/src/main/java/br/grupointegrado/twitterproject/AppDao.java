@@ -56,6 +56,17 @@ public class AppDao extends SQLiteOpenHelper {
         return contas;
     }
 
+    public boolean verificaUsuario (String user, String pass) {
+        Cursor query = getReadableDatabase().rawQuery("SELECT * FROM USUARIO WHERE USER = ? AND PASS = ?",
+                new String[]{user, pass});
+
+        if (query.getCount() == 1)
+            return true;
+        else
+            return false;
+
+    }
+
     public void deleteConta (Conta c) {
         getWritableDatabase().delete("Conta", "id = ?", new String[]{c.getId().toString()});
     }

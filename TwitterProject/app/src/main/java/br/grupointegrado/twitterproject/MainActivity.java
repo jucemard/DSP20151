@@ -3,6 +3,7 @@ package br.grupointegrado.twitterproject;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,6 +38,7 @@ public class MainActivity extends ActionBarActivity {
         spnContas.setEmptyView(tvEmpty);
 
         appDao = new AppDao(this);
+        Log.e("MSG", appDao.listConta().toString());
     }
 
     @Override
