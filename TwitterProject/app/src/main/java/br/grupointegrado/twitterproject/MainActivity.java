@@ -47,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
 
         contas = contaDao.list();
 
-        ArrayAdapter<Conta> aaContas = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, contas);
+        ContaArrayAdapter aaContas = new ContaArrayAdapter(this, contas);
 
         spnContas.setAdapter(aaContas);
         lvContas.setAdapter (aaContas);

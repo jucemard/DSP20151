@@ -44,6 +44,6 @@ public class Conta implements Serializable {
 
     @Override
     public String toString() {
-        return this.conta;
+        return this.conta + " (" + this.nome + ") ";
     }
 }
