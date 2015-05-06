@@ -12,4 +12,7 @@ public interface DAO<T> {
     public void update (T t);
     public List<T> list ();
 
+    public String getTableName ();
+    public String[] getAllFields ();
+
 }
