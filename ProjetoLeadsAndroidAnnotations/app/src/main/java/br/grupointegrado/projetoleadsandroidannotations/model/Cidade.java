@@ -1,9 +1,11 @@
 package br.grupointegrado.projetoleadsandroidannotations.model;
 
+import java.io.Serializable;
+
 /**
  * Created by bhpachulski on 5/4/2015.
  */
-public class Cidade {
+public class Cidade implements Serializable {
 
     private Integer id;
     private String nome;

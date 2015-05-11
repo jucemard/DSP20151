@@ -3,6 +3,7 @@
 
     <string name="app_name">ProjetoLeadsAndroidAnnotations</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_save">Salvar</string>
+    <string name="action_list">Listar</string>
 
 </resources>

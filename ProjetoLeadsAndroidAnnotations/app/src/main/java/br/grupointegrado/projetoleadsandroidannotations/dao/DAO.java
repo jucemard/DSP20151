@@ -1,5 +1,6 @@
 package br.grupointegrado.projetoleadsandroidannotations.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
