@@ -64,7 +64,7 @@ public class MainActivity extends ActionBarActivity {
 
     @OptionsItem(R.id.action_list)
     public void list () {
-
+        startActivity(new Intent(this, ListTestActivity_.class));
     }
 
 //    https://github.com/excilys/androidannotations/wiki/Building-Project-Gradle

@@ -5,5 +5,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_save">Salvar</string>
     <string name="action_list">Listar</string>
+    <string name="action_update">Alterar</string>
+    <string name="action_delete">Deletar</string>
+    <string name="title_activity_list_test">ListTestActivity</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
